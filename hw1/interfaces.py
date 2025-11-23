@@ -1,9 +1,17 @@
 from typing import Protocol
 
-#class Animal(Protocol):
+
+class IAlive(Protocol):
+    @property
+    def food(self) -> int:
+        ...
 
 
-def add(a: int, b: int) -> int:
-    return a + b    
+class IInventory(Protocol):
+    @property
+    def number(self) -> int:
+        ...
 
-add(1, "x")
+
+
+
