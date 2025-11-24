@@ -11,7 +11,3 @@ class IInventory(Protocol):
     @property
     def number(self) -> int:
         ...
-
-
-
-
