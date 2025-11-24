@@ -1,2 +1,2 @@
-# sw_design_2025
-This is repo with all tasks from software design course
+# Software Design 2025
+Репозиторий с домашними заданиями и материалами курса "Конструирование программного обеспечения" - 2025
