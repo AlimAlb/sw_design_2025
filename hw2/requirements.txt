@@ -1,0 +1,5 @@
+# Optional dependencies
+# PyYAML is required only for YAML import functionality
+# Install with: pip install -r requirements.txt
+PyYAML>=6.0
+
