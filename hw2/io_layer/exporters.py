@@ -9,8 +9,7 @@ from domain.models import Account, Category, Operation
 class ExportVisitor(ABC):
     @abstractmethod
     def visit_account(self, account: Account) -> Any:
-        pass
-    
+        pass    
     @abstractmethod
     def visit_category(self, category: Category) -> Any:
         pass
@@ -39,6 +38,7 @@ class JSONExportVisitor(ExportVisitor):
             'category_type': category.category_type.value
         }
     
+
     def visit_operation(self, operation: Operation) -> dict[str, Any]:
         return {
             'id': operation.id,
@@ -67,6 +67,7 @@ class CSVExportVisitor(ExportVisitor):
     def visit_category(self, category: Category) -> list[Any]:
         return ['category', category.id, category.name, '', category.category_type.value, '', '', '', '', '', '']
     
+
     def visit_operation(self, operation: Operation) -> list[Any]:
         return [
             'operation',
@@ -91,7 +92,8 @@ class CSVExportVisitor(ExportVisitor):
 
             for category in categories:
                 writer.writerow(self.visit_category(category))
-            
+
+
             for operation in operations:
                 writer.writerow(self.visit_operation(operation))
 
@@ -104,6 +106,7 @@ class YAMLExportVisitor(ExportVisitor):
             'balance': account.balance
         }
     
+
     def visit_category(self, category: Category) -> dict[str, Any]:
         return {
             'id': category.id,
@@ -144,6 +147,7 @@ class DataExporter:
     
     def export_operations(self, operations: List[Operation]) -> List[Any]:
         return [self._visitor.visit_operation(op) for op in operations]
+    
     
     def export_all(self, accounts: List[Account], categories: List[Category], operations: List[Operation]) -> dict[str, List[Any]]:
         return {

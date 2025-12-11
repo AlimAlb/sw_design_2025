@@ -11,6 +11,8 @@ class OperationType(Enum):
     EXPENSE = "expense"
 
 
+
+
 class CategoryType(Enum):
     INCOME = "income"
     EXPENSE = "expense"

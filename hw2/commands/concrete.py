@@ -7,12 +7,7 @@ from services.facades import AccountsFacade, AnalyticsFacade, CategoriesFacade, 
 
 
 class CreateAccountCommand(Command):        
-    def __init__(
-        self,
-        facade: AccountsFacade,
-        name: str,
-        initial_balance: float
-    ) -> None:
+    def __init__(self, facade: AccountsFacade, name: str, initial_balance: float) -> None:
         self._facade = facade
         self._name = name
         self._initial_balance = initial_balance
@@ -83,7 +78,8 @@ class CreateOperationCommand(Command):
         self._category_id = category_id
         self._account_id = account_id
         self._description = description
-    
+
+
     def execute(self) -> Operation:
         return self._facade.create_operation(
             operation_type=self._operation_type,
@@ -98,7 +94,8 @@ class CreateOperationCommand(Command):
 class ListOperationsCommand(Command):
     def __init__(self, facade: OperationsFacade) -> None:
         self._facade = facade
-    
+
+
     def execute(self) -> List[Operation]:
         return self._facade.get_all_operations()
 
@@ -113,12 +110,14 @@ class CalculateBalanceDifferenceCommand(Command):
         self._facade = facade
         self._start_date = start_date
         self._end_date = end_date
-    
+
+
     def execute(self) -> float:
         return self._facade.calculate_balance_difference(
             self._start_date,
             self._end_date
         )
+
 
 
 class GroupByCategoriesCommand(Command):

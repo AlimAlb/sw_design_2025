@@ -8,6 +8,7 @@ class AccountRepositoryProxy:
     def __init__(self, repository: AccountRepository) -> None:
         self._repository = repository
     
+
     def create(self, account: Account) -> Account:
         result = self._repository.create(account)
         print(f"[LOG] Created account: {account.name} (ID: {account.id})")
@@ -20,6 +21,8 @@ class AccountRepositoryProxy:
         accounts = self._repository.get_all()
         print(f"[LOG] Retrieved {len(accounts)} accounts")
         return accounts
+    
+
     
     def delete(self, account_id: AccountId) -> bool:
         account = self._repository.get_by_id(account_id)

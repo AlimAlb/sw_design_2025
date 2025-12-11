@@ -8,6 +8,7 @@ import yaml
 from domain.models import Account, Category, Operation
 from domain.types import AccountId, CategoryId, OperationId, CategoryType, OperationType
 
+
 class DataImporter(ABC):
     def import_data(self, file_path: str) -> Dict[str, List[Any]]:
         raw_data = self._read_file(file_path)
@@ -17,7 +18,8 @@ class DataImporter(ABC):
     @abstractmethod
     def _read_file(self, file_path: str) -> str:
         pass
-    
+
+
     @abstractmethod
     def _parse_data(self, raw_data: str) -> Dict[str, List[Any]]:
         pass
@@ -35,7 +37,8 @@ class JSONImporter(DataImporter):
             'categories': [],
             'operations': []
         }
-        
+
+
         for acc_data in data.get('accounts', []):
             account = Account(
                 id=AccountId(acc_data['id']),
@@ -127,7 +130,7 @@ class YAMLImporter(DataImporter):
             'operations': []
         }
         
-        # Parse accounts
+
         for acc_data in data.get('accounts', []):
             account = Account(
                 id=AccountId(acc_data['id']),
@@ -136,7 +139,7 @@ class YAMLImporter(DataImporter):
             )
             result['accounts'].append(account)
         
-        # Parse categories
+
         for cat_data in data.get('categories', []):
             category = Category(
                 id=CategoryId(cat_data['id']),
@@ -145,7 +148,7 @@ class YAMLImporter(DataImporter):
             )
             result['categories'].append(category)
         
-        # Parse operations
+
         for op_data in data.get('operations', []):
             operation = Operation(
                 id=OperationId(op_data['id']),
@@ -157,6 +160,7 @@ class YAMLImporter(DataImporter):
                 description=op_data.get('description')
             )
             result['operations'].append(operation)
+
         
         return result
 

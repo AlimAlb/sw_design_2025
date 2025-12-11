@@ -10,7 +10,8 @@ class AccountRepository:
     def create(self, account: Account) -> Account:
         self._accounts[account.id] = account
         return account
-    
+
+
     def get_by_id(self, account_id: AccountId) -> Optional[Account]:
         return self._accounts.get(account_id)
     
@@ -31,6 +32,7 @@ class AccountRepository:
 class CategoryRepository:
     def __init__(self) -> None:
         self._categories: Dict[CategoryId, Category] = {}
+
     
     def create(self, category: Category) -> Category:
         self._categories[category.id] = category
@@ -57,6 +59,7 @@ class OperationRepository:
         self._operations[operation.id] = operation
         return operation
     
+    
     def get_by_id(self, operation_id: OperationId) -> Optional[Operation]:
         return self._operations.get(operation_id)
     
@@ -66,6 +69,7 @@ class OperationRepository:
     def get_by_account(self, account_id: AccountId) -> List[Operation]:
         return [ op for op in self._operations.values() if op.account_id == account_id]
     
+
     def get_by_date_range(self, start_date: Optional["date"], end_date: Optional["date"]) -> List[Operation]:
         operations = list(self._operations.values())
         if start_date is not None:

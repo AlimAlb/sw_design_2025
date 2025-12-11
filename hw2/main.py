@@ -364,7 +364,6 @@ class ConsoleMenu:
                     accounts_facade.create_account(account.name, account.balance)
                     print(f"Импортирован счёт: {account.name}")
             
-            # Import categories
             categories_facade = self._container.categories_facade
             for category in data.get('categories', []):
                 existing = categories_facade.get_category(category.id)
@@ -372,7 +371,6 @@ class ConsoleMenu:
                     categories_facade.create_category(category.name, category.category_type)
                     print(f"Импортирована категория: {category.name}")
             
-            # Import operations
             operations_facade = self._container.operations_facade
             for operation in data.get('operations', []):
                 try:
@@ -420,7 +418,6 @@ class ConsoleMenu:
             categories = self._container.categories_facade.get_all_categories()
             operations = self._container.operations_facade.get_all_operations()
             
-            # Select appropriate visitor based on format
             if format_type == 'json':
                 visitor = JSONExportVisitor()
             elif format_type == 'csv':

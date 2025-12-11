@@ -16,7 +16,8 @@ class DomainFactory:
         
         if initial_balance < 0:
             raise ValueError("Initial balance cannot be negative")
-        
+
+
         account_id = AccountId(self._account_id_counter)
         self._account_id_counter += 1
         
@@ -37,11 +38,13 @@ class DomainFactory:
             name=name.strip(),
             category_type=category_type
         )
-    
+
+
     def create_operation(self,operation_type: OperationType, amount: float, operation_date: date,
     category_id: CategoryId, account_id: AccountId, description: Optional[str] = None) -> Operation:        
         if amount <= 0:
             raise ValueError("Operation amount must be greater than 0")
+
         
         operation_id = OperationId(self._operation_id_counter)
         self._operation_id_counter += 1

@@ -2,7 +2,7 @@ from datetime import date
 from typing import Dict, List, Optional
 from domain.factory import DomainFactory
 from domain.models import Account, Category, Operation
-from domain.types import AccountId, CategoryId, OperationId, CategoryType, OperationType
+from domain.types import AccountId, CategoryId, CategoryType, OperationType
 from persistence.proxy import AccountRepositoryProxy
 from persistence.repositories import CategoryRepository, OperationRepository
 
@@ -10,7 +10,8 @@ class AccountsFacade:
     def __init__(self, factory: DomainFactory, repository: AccountRepositoryProxy) -> None:
         self._factory = factory
         self._repository = repository
-    
+
+
     def create_account(self, name: str, initial_balance: float) -> Account:
         account = self._factory.create_account(name, initial_balance)
         return self._repository.create(account)
@@ -23,7 +24,9 @@ class AccountsFacade:
     
     def get_account(self, account_id: AccountId) -> Optional[Account]:
         return self._repository.get_by_id(account_id)
-    
+
+
+
     def update_account_balance(self, account_id: AccountId, new_balance: float) -> None:
         account = self._repository.get_by_id(account_id)
         if account:
@@ -108,8 +111,7 @@ class AnalyticsFacade:
         expenses = sum(
             op.amount for op in operations
             if op.operation_type == OperationType.EXPENSE
-        )
-        
+        )        
         return income - expenses
     
     def group_by_categories(self, start_date: Optional[date] = None, end_date: Optional[date] = None) -> Dict[str, float]:
@@ -126,7 +128,7 @@ class AnalyticsFacade:
                 
                 if operation.operation_type == OperationType.INCOME:
                     result[category_name] += operation.amount
-                else:  # EXPENSE
+                else:  
                     result[category_name] -= operation.amount
         
         return result

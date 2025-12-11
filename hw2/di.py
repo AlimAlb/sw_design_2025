@@ -3,8 +3,8 @@ from persistence.proxy import AccountRepositoryProxy
 from persistence.repositories import AccountRepository, CategoryRepository, OperationRepository
 from services.facades import AccountsFacade, AnalyticsFacade, CategoriesFacade, OperationsFacade
 
-
 class DIContainer:
+
     def __init__(self) -> None:
         self._factory = DomainFactory()
         self._account_repository = AccountRepository()
@@ -15,6 +15,8 @@ class DIContainer:
             factory=self._factory,
             repository=self._account_repository_proxy
         )
+
+        
         self._categories_facade = CategoriesFacade(
             factory=self._factory,
             repository=self._category_repository
@@ -32,22 +34,19 @@ class DIContainer:
     
     @property
     def accounts_facade(self) -> AccountsFacade:
-        """Get accounts facade."""
         return self._accounts_facade
     
+
     @property
     def categories_facade(self) -> CategoriesFacade:
-        """Get categories facade."""
         return self._categories_facade
     
     @property
     def operations_facade(self) -> OperationsFacade:
-        """Get operations facade."""
         return self._operations_facade
     
     @property
     def analytics_facade(self) -> AnalyticsFacade:
-        """Get analytics facade."""
         return self._analytics_facade
 
 

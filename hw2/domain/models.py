@@ -10,11 +10,13 @@ class Account:
     balance: float
 
 
+
 @dataclass
 class Category:
     id: CategoryId
     name: str
     category_type: CategoryType
+
 
 
 @dataclass
