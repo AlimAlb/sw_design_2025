@@ -17,29 +17,29 @@ hw2/
 │
 ├── domain/                 
 │   ├── __init__.py
-│   ├── types.py           # Перечисления и типы (AccountId, CategoryId, OperationType)
-│   ├── models.py          # Dataclass-модели (Account, Category, Operation)
-│   └── factory.py         # Фабрика для создания доменных объектов (Factory pattern)
+│   ├── types.py           # Перечисления и типы
+│   ├── models.py          # Dataclass-модели 
+│   └── factory.py         # Фабрика для создания доменных объектов 
 │
 ├── persistence/            
 │   ├── __init__.py
-│   └── repositories.py    # In-memory репозитории (AccountRepository, CategoryRepository, OperationRepository)
+│   └── repositories.py    # In-memory хранение
 │
 ├── services/               
 │   ├── __init__.py
-│   └── facades.py         # Фасады для работы с доменом (Facade pattern): AccountsFacade, CategoriesFacade
+│   └── facades.py         # Фасады для работы с доменом: AccountsFacade, CategoriesFacade
 │                           # OperationsFacade, AnalyticsFacade                           
 │                           
 │
 ├── commands/               
 │   ├── __init__.py
-│   ├── base.py            # Интерфейс Command (Command pattern)
-│   └── concrete.py        # Конкретные команды (CreateAccountCommand, ListOperationsCommand и т.д.)
+│   ├── base.py            # Интерфейс Command
+│   └── concrete.py        # Конкретные команды 
 │
 └── io_layer/              
     ├── __init__.py
-    ├── importers.py       # Импорт данных (Template Method pattern): JSONImporter, CSVImporter, YAMLImporter
-    └── exporters.py       # Экспорт данных (Visitor pattern): JSONExportVisitor, DataExporter
+    ├── importers.py       # Импорт данных 
+    └── exporters.py       # Экспорт данных
 ```
 
 ## Реализованные паттерны проектирования
