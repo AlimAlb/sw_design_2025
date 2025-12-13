@@ -61,16 +61,9 @@ class ListCategoriesCommand(Command):
 
 
 class CreateOperationCommand(Command):
-    def __init__(
-        self,
-        facade: OperationsFacade,
-        operation_type: OperationType,
-        amount: float,
-        operation_date: date,
-        category_id: CategoryId,
-        account_id: AccountId,
-        description: Optional[str] = None
-    ) -> None:
+    def __init__(self,facade: OperationsFacade, operation_type: OperationType,amount: float,
+        operation_date: date, category_id: CategoryId, account_id: AccountId,
+        description: Optional[str] = None) -> None:
         self._facade = facade
         self._operation_type = operation_type
         self._amount = amount
@@ -101,12 +94,7 @@ class ListOperationsCommand(Command):
 
 
 class CalculateBalanceDifferenceCommand(Command):
-    def __init__(
-        self,
-        facade: AnalyticsFacade,
-        start_date: Optional[date] = None,
-        end_date: Optional[date] = None
-    ) -> None:
+    def __init__(self, facade: AnalyticsFacade, start_date: Optional[date] = None, end_date: Optional[date] = None) -> None:
         self._facade = facade
         self._start_date = start_date
         self._end_date = end_date
@@ -122,11 +110,7 @@ class CalculateBalanceDifferenceCommand(Command):
 
 class GroupByCategoriesCommand(Command):
     def __init__(
-        self,
-        facade: AnalyticsFacade,
-        start_date: Optional[date] = None,
-        end_date: Optional[date] = None
-    ) -> None:
+        self, facade: AnalyticsFacade, start_date: Optional[date] = None, end_date: Optional[date] = None) -> None:
         self._facade = facade
         self._start_date = start_date
         self._end_date = end_date

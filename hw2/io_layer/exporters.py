@@ -3,7 +3,6 @@ from typing import Any, List
 import json
 import csv
 import yaml
-
 from domain.models import Account, Category, Operation
 
 class ExportVisitor(ABC):

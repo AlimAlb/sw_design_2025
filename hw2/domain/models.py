@@ -18,7 +18,6 @@ class Category:
     category_type: CategoryType
 
 
-
 @dataclass
 class Operation:
     id: OperationId

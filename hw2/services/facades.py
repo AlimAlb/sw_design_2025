@@ -3,11 +3,10 @@ from typing import Dict, List, Optional
 from domain.factory import DomainFactory
 from domain.models import Account, Category, Operation
 from domain.types import AccountId, CategoryId, CategoryType, OperationType
-from persistence.proxy import AccountRepositoryProxy
-from persistence.repositories import CategoryRepository, OperationRepository
+from persistence.repositories import AccountRepository, CategoryRepository, OperationRepository
 
 class AccountsFacade:    
-    def __init__(self, factory: DomainFactory, repository: AccountRepositoryProxy) -> None:
+    def __init__(self, factory: DomainFactory, repository: AccountRepository) -> None:
         self._factory = factory
         self._repository = repository
 

@@ -11,7 +11,7 @@ class DomainFactory:
         self._operation_id_counter = 0
     
     def create_account(self, name: str, initial_balance: float) -> Account:
-        if not name or not name.strip():
+        if not name:
             raise ValueError("Account name cannot be empty")
         
         if initial_balance < 0:
@@ -23,12 +23,12 @@ class DomainFactory:
         
         return Account(
             id=account_id,
-            name=name.strip(),
+            name=name,
             balance=initial_balance
         )
     
     def create_category(self, name: str, category_type: CategoryType) -> Category:
-        if not name or not name.strip():
+        if not name:
             raise ValueError("Category name cannot be empty")
 
         category_id = CategoryId(self._category_id_counter)
@@ -55,7 +55,7 @@ class DomainFactory:
             date=operation_date,
             category_id=category_id,
             account_id=account_id,
-            description=description.strip() if description else None
+            description=description
         )
 
 

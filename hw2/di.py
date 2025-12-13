@@ -1,5 +1,4 @@
 from domain.factory import DomainFactory
-from persistence.proxy import AccountRepositoryProxy
 from persistence.repositories import AccountRepository, CategoryRepository, OperationRepository
 from services.facades import AccountsFacade, AnalyticsFacade, CategoriesFacade, OperationsFacade
 
@@ -10,10 +9,9 @@ class DIContainer:
         self._account_repository = AccountRepository()
         self._category_repository = CategoryRepository()
         self._operation_repository = OperationRepository()
-        self._account_repository_proxy = AccountRepositoryProxy(self._account_repository)
         self._accounts_facade = AccountsFacade(
             factory=self._factory,
-            repository=self._account_repository_proxy
+            repository=self._account_repository
         )
 
         

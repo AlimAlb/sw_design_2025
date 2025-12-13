@@ -23,8 +23,7 @@ hw2/
 │
 ├── persistence/            # Слой персистентности
 │   ├── __init__.py
-│   ├── repositories.py    # In-memory репозитории (AccountRepository, CategoryRepository, OperationRepository)
-│   └── proxy.py           # Прокси над репозиторием (Proxy pattern)
+│   └── repositories.py    # In-memory репозитории (AccountRepository, CategoryRepository, OperationRepository)
 │
 ├── services/               # Слой сервисов
 │   ├── __init__.py
@@ -62,12 +61,9 @@ hw2/
  Определение алгоритма импорта данных  с возможностью переопределения шагов для разных форматов (JSON, CSV, YAML).
 
 ### 6. Посетитель - `io_layer/exporters.py`  
- Разделение алгоритма экспорта от структуры данных. Разные посетители могут экспортировать в разные форматы.
+Разделение алгоритма экспорта от структуры данных. Разные посетители могут экспортировать в разные форматы.
 
-### 7. Прокси - `persistence/proxy.py`  
- Обёртка над AccountRepository, добавляющая логирование операций без изменения основного репозитория.
-
-### 8. DI Container - `di.py`  
+### 7. DI Container - `di.py`
  Централизованное управление зависимостями. Все компоненты создаются и связываются в одном месте.
 
 ## Принципы SOLID
@@ -86,7 +82,6 @@ hw2/
 ### 3. Liskov Substitution Principle 
 - Все подклассы `DataImporter` могут использоваться вместо базового класса.
 - Все подклассы `Command` могут использоваться через общий интерфейс.
-- `AccountRepositoryProxy` полностью заменяет `AccountRepository` без нарушения функциональности.
 
 ### 4. Interface Segregation Principle (ISP)
 - **Command** (`commands/base.py`): Минимальный интерфейс с одним методом `execute()`.

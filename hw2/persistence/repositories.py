@@ -1,4 +1,5 @@
 from typing import Dict, List, Optional
+import copy
 from domain.models import Account, Category, Operation
 from domain.types import AccountId, CategoryId, OperationId
 from datetime import date
@@ -13,10 +14,11 @@ class AccountRepository:
 
 
     def get_by_id(self, account_id: AccountId) -> Optional[Account]:
-        return self._accounts.get(account_id)
+        account = self._accounts.get(account_id)
+        return copy.deepcopy(account) if account else None
     
     def get_all(self) -> List[Account]:
-        return list(self._accounts.values())
+        return [copy.deepcopy(account) for account in self._accounts.values()]
     
     def delete(self, account_id: AccountId) -> bool:
         if account_id in self._accounts:
@@ -39,10 +41,11 @@ class CategoryRepository:
         return category
     
     def get_by_id(self, category_id: CategoryId) -> Optional[Category]:
-        return self._categories.get(category_id)
+        category = self._categories.get(category_id)
+        return copy.deepcopy(category) if category else None
     
     def get_all(self) -> List[Category]:
-        return list(self._categories.values())
+        return [copy.deepcopy(category) for category in self._categories.values()]
     
     def delete(self, category_id: CategoryId) -> bool:
         if category_id in self._categories:
@@ -61,13 +64,14 @@ class OperationRepository:
     
     
     def get_by_id(self, operation_id: OperationId) -> Optional[Operation]:
-        return self._operations.get(operation_id)
+        operation = self._operations.get(operation_id)
+        return copy.deepcopy(operation) if operation else None
     
     def get_all(self) -> List[Operation]:
-        return list(self._operations.values())
+        return [copy.deepcopy(op) for op in self._operations.values()]
     
     def get_by_account(self, account_id: AccountId) -> List[Operation]:
-        return [ op for op in self._operations.values() if op.account_id == account_id]
+        return [copy.deepcopy(op) for op in self._operations.values() if op.account_id == account_id]
     
 
     def get_by_date_range(self, start_date: Optional["date"], end_date: Optional["date"]) -> List[Operation]:
@@ -77,7 +81,7 @@ class OperationRepository:
         if end_date is not None:
             operations = [op for op in operations if op.date <= end_date]
         
-        return operations
+        return [copy.deepcopy(op) for op in operations]
 
 
 
