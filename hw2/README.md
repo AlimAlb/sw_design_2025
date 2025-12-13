@@ -27,8 +27,8 @@ hw2/
 │
 ├── services/               
 │   ├── __init__.py
-│   └── facades.py         # Фасады для работы с доменом: AccountsFacade, CategoriesFacade
-│                           # OperationsFacade, AnalyticsFacade                           
+│   └── facades.py         # Фасады для работы с доменом
+│                           
 │                           
 │
 ├── commands/               
