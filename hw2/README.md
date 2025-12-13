@@ -15,32 +15,31 @@ hw2/
 ├── main.py                 # Точка входа, консольное меню
 ├── di.py                   # DI-контейнер
 │
-├── domain/                 # Доменный слой
+├── domain/                 
 │   ├── __init__.py
 │   ├── types.py           # Перечисления и типы (AccountId, CategoryId, OperationType)
 │   ├── models.py          # Dataclass-модели (Account, Category, Operation)
 │   └── factory.py         # Фабрика для создания доменных объектов (Factory pattern)
 │
-├── persistence/            # Слой персистентности
+├── persistence/            
 │   ├── __init__.py
 │   └── repositories.py    # In-memory репозитории (AccountRepository, CategoryRepository, OperationRepository)
 │
-├── services/               # Слой сервисов
+├── services/               
 │   ├── __init__.py
 │   └── facades.py         # Фасады для работы с доменом (Facade pattern): AccountsFacade, CategoriesFacade
 │                           # OperationsFacade, AnalyticsFacade                           
 │                           
 │
-├── commands/               # Слой команд
+├── commands/               
 │   ├── __init__.py
 │   ├── base.py            # Интерфейс Command (Command pattern)
-│   ├── concrete.py        # Конкретные команды (CreateAccountCommand, ListOperationsCommand и т.д.)
-│   └── decorators.py      # Декоратор для измерения времени (Decorator pattern)
+│   └── concrete.py        # Конкретные команды (CreateAccountCommand, ListOperationsCommand и т.д.)
 │
-└── io_layer/              # Слой ввода/вывода
+└── io_layer/              
     ├── __init__.py
-    ├── importers.py       # Импортеры данных (Template Method pattern): JSONImporter, CSVImporter, YAMLImporter
-    └── exporters.py       # Экспортеры данных (Visitor pattern): JSONExportVisitor, DataExporter
+    ├── importers.py       # Импорт данных (Template Method pattern): JSONImporter, CSVImporter, YAMLImporter
+    └── exporters.py       # Экспорт данных (Visitor pattern): JSONExportVisitor, DataExporter
 ```
 
 ## Реализованные паттерны проектирования
@@ -54,16 +53,13 @@ hw2/
 ### 3. Команда - `commands/base.py`, `commands/concrete.py`  
  Инкапсуляция запросов как объектов. Каждая операция (создание счёта, удаление категории и т.д.) представлена отдельной командой.
 
-### 4. Декоратор - `commands/decorators.py`  
- Добавление функциональности измерения времени выполнения команд без изменения их структуры.
-
-### 5. Шаблонный метод - `io_layer/importers.py`  
+### 4. Шаблонный метод - `io_layer/importers.py`  
  Определение алгоритма импорта данных  с возможностью переопределения шагов для разных форматов (JSON, CSV, YAML).
 
-### 6. Посетитель - `io_layer/exporters.py`  
+### 5. Посетитель - `io_layer/exporters.py`  
 Разделение алгоритма экспорта от структуры данных. Разные посетители могут экспортировать в разные форматы.
 
-### 7. DI Container - `di.py`
+### 6. DI Container - `di.py`
  Централизованное управление зависимостями. Все компоненты создаются и связываются в одном месте.
 
 ## Принципы SOLID
